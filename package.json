@@ -1,0 +1,35 @@
+{
+  "name": "Todo2020",
+  "version": "1.0.0",
+  "main": "bin/index.js",
+  "repository": "git@github.com:kcjhill1234/Todo2020.git",
+  "author": "ktotheH <kcjhill1234@msn.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node bin/index.js",
+    "build": "tsc --build",
+    "dev": "concurrently \"nodemon\" \"yarn dev:frontend\"" ,
+    "dev:frontend": "cd frontend && yarn start"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.9",
+    "concurrently": "^5.3.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src/**"
+    ],
+    "exec": "ts-node src/index.ts",
+    "ext": "ts,json",
+    "env": {
+      "NODE_ENV": "development"
+    }
+  }
+}
