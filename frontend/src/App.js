@@ -1,7 +1,22 @@
 import {useState, useEffect} from "react"
 
 function App() {
+
   const [todos, setTodos] = useState([])
+
+  const addTodo = async () => {
+    const response = await fetch("/api/todo", {
+      method: 'post',
+      headers: {
+        'Content-Type': "application/json", 
+      }, 
+      body: JSON.stringify({
+        text: 'Test Todo',
+        complete: false,
+      }),
+    });
+  }
+
   const getTodos = async () => {
     const url = "/api/todo"
     const response = await fetch(url, {
