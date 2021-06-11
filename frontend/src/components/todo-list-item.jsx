@@ -8,7 +8,7 @@ export default function TodoListItem({ todo, refresh }) {
     setEditMode((prev) => !prev);
   };
   const deleteTodo = async () => {
-    const response = await fetch(`/api/todo/${todo._id}`, {
+    await fetch(`/api/todo/${todo._id}`, {
       method: "delete",
     });
     refresh();
@@ -22,7 +22,7 @@ export default function TodoListItem({ todo, refresh }) {
     setText(todo.text);
   };
   const saveEdit = async () => {
-    const response = await fetch(`/api/todo/${todo._id}`, {
+    await fetch(`/api/todo/${todo._id}`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export default function TodoListItem({ todo, refresh }) {
     refresh();
   };
   const toggleComplete = async () => {
-    const response = await fetch(`/api/todo/${todo._id}`, {
+    await fetch(`/api/todo/${todo._id}`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,9 @@ export default function TodoListItem({ todo, refresh }) {
   const renderText = editMode ? (
     <input type="text" value={text} onChange={editText} />
   ) : (
-    <span onClick={toggleComplete} className={todo.complete ? "complete" : ""}>{todo.text}</span>
+    <span onClick={toggleComplete} className={todo.complete ? "complete" : ""}>
+      {todo.text}
+    </span>
   );
   const renderButtons = editMode ? (
     <>
